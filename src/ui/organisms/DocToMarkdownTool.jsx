@@ -1,34 +1,14 @@
 import { useState } from "react";
-import { GlobalWorkerOptions } from "pdfjs-dist";
-import pdfWorkerSrc from "pdfjs-dist/build/pdf.worker.min.mjs?url";
-
-import { convertPdf } from "../utils/convertPdf";
-import { convertDocx } from "../utils/convertDocx";
 import {
   sanitizeText,
   buildMarkdown,
-} from "../utils/buildMarkdown";
-import { downloadFile } from "../utils/downloadFile";
+} from "../../utils/buildMarkdown";
+import { downloadFile } from "../../utils/downloadFile";
+import ToolShell from "../atoms/ToolShell";
 
-import "./DocToMarkdown.css";
+import "./DocToMarkdownTool.scss";
 
-GlobalWorkerOptions.workerSrc = pdfWorkerSrc;
-
-const DOCX_TYPE =
-  "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-
-const CONVERTERS = {
-  "application/pdf": {
-    type: "pdf",
-    convert: convertPdf,
-  },
-  [DOCX_TYPE]: {
-    type: "docx",
-    convert: convertDocx,
-  },
-};
-
-export default function DocToMarkdown() {
+export default function DocToMarkdownTool() {
   const [file, setFile] = useState(null);
   const [markdown, setMarkdown] = useState("");
   const [loading, setLoading] = useState(false);
@@ -47,7 +27,7 @@ export default function DocToMarkdown() {
       return;
     }
 
-    if (!CONVERTERS[selected.type]) {
+    if (selected.type !== "application/pdf" && selected.type !== "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
       setFile(null);
       setError("Please upload a PDF or DOCX file.");
       return;
@@ -67,15 +47,20 @@ export default function DocToMarkdown() {
       setError("");
       setCopied(false);
 
-      const converter = CONVERTERS[file.type];
+      const isPdf = file.type === "application/pdf";
+      const converterModule = isPdf
+        ? await import("../../utils/convertPdf")
+        : await import("../../utils/convertDocx");
 
-      const rawText = await converter.convert(file);
+      const rawText = isPdf
+        ? await converterModule.convertPdf(file)
+        : await converterModule.convertDocx(file);
 
       setMarkdown(
         buildMarkdown(
           file.name,
           sanitizeText(rawText),
-          converter.type
+          isPdf ? "pdf" : "docx"
         )
       );
     } catch (err) {
@@ -99,29 +84,24 @@ export default function DocToMarkdown() {
     setTimeout(() => setCopied(false), 1200);
   };
 
-  const handleDownload = () => {
+  const handleDownload = async () => {
     if (!file || !markdown) return;
 
-    downloadFile(
-      `${file.name.replace(/\.[^.]+$/, "")}.md`,
-      markdown
-    );
+    try {
+      await downloadFile(`${file.name.replace(/\.[^.]+$/, "")}.md`, markdown);
+    } catch (err) {
+      console.error(err);
+      setError("Could not export the Markdown file.");
+    }
   };
 
   return (
-    <section className="doc-markdown-card">
-      <h2>PDF / Word to Markdown</h2>
-
-      <p className="doc-markdown-subtitle">
-        Convert PDF and DOCX files into Markdown for
-        Copilot or AI context.
-      </p>
-
+    <ToolShell
+      title="PDF / Word to Markdown"
+      subtitle="Convert PDF and DOCX files into Markdown for Copilot or AI context."
+    >
       <div className="doc-markdown-controls">
-        <label
-          htmlFor="doc-input"
-          className="doc-markdown-upload"
-        >
+        <label htmlFor="doc-input" className="doc-markdown-upload">
           Choose File
         </label>
 
@@ -140,9 +120,7 @@ export default function DocToMarkdown() {
           onClick={handleConvert}
           disabled={!file || loading}
         >
-          {loading
-            ? "Converting..."
-            : "Convert to Markdown"}
+          {loading ? "Converting..." : "Convert to Markdown"}
         </button>
       </div>
 
@@ -156,9 +134,7 @@ export default function DocToMarkdown() {
         <div className="doc-markdown-output-wrap">
           <div className="doc-markdown-actions">
             <button onClick={handleCopy}>
-              {copied
-                ? "Copied!"
-                : "Copy Markdown"}
+              {copied ? "Copied!" : "Copy Markdown"}
             </button>
 
             <button onClick={handleDownload}>
@@ -174,6 +150,6 @@ export default function DocToMarkdown() {
           />
         </div>
       )}
-    </section>
+    </ToolShell>
   );
 }

@@ -1,0 +1,32 @@
+@use '../../styles/variables' as *;
+
+.pdf-splitter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-4;
+  align-items: center;
+
+  .pdf-splitter-input {
+    display: none;
+  }
+
+  .pdf-splitter-upload {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: $space-2 $space-4;
+    border: 0;
+    border-radius: $radius-pill;
+    background: linear-gradient(135deg, $primary, $primary-strong);
+    box-shadow: 0 12px 24px $primary-shadow;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .pdf-splitter-status {
+    margin: 0;
+    color: $primary;
+    font-weight: 600;
+  }
+}

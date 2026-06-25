@@ -91,8 +91,20 @@ src/
 	Components/
 		Compressor.jsx
 		DocToMarkdown.jsx
+		PngToPdf.jsx
 	pdfextracter/
 		index.jsx
 		PdfMerger.jsx
+	ui/
+		atoms/
+			ToolShell.jsx
+		organisms/
+			ToolTabsWorkspace.jsx
 	App.jsx
 ```
+
+## UI Structure
+
+- `ui/atoms` contains the shared shell used by every tool card.
+- `ui/organisms` contains the main tab workspace.
+- Each tool keeps its own file-processing logic and tool-specific controls.

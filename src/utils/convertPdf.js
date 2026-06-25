@@ -1,6 +1,11 @@
-import { getDocument } from "pdfjs-dist";
-
 export async function convertPdf(file) {
+    const [{ GlobalWorkerOptions, getDocument }, pdfWorkerModule] = await Promise.all([
+        import("pdfjs-dist"),
+        import("pdfjs-dist/build/pdf.worker.min.mjs?url"),
+    ]);
+
+    GlobalWorkerOptions.workerSrc = pdfWorkerModule.default;
+
     const pdf = await getDocument({
         data: await file.arrayBuffer(),
     }).promise;

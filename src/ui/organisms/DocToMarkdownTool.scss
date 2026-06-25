@@ -1,0 +1,102 @@
+@use '../../styles/variables' as *;
+
+.doc-markdown-card {
+  margin: $space-8;
+  padding: $space-7;
+  border: 1px solid $surface-soft-border;
+  border-radius: $radius-md;
+  background: $surface-body;
+
+  h2 {
+    margin: 0 0 $space-2;
+    font-size: 24px;
+  }
+
+  &-subtitle {
+    margin: 0 0 $space-8;
+    color: $muted-text;
+  }
+
+  &-controls {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: $space-3;
+    margin-bottom: $space-4;
+
+    button {
+      grid-column: span 2;
+      width: fit-content;
+      padding: $space-2 $space-4;
+      border: 0;
+      border-radius: $radius-sm;
+      background: $success;
+      color: #fff;
+      font-weight: 600;
+
+      &:disabled {
+        background: $success-muted;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &-upload {
+    display: inline-block;
+    padding: $space-2 $space-4;
+    border-radius: $radius-sm;
+    background: $primary;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  &-input {
+    width: 100%;
+  }
+
+  &-file {
+    grid-column: span 2;
+    color: $strong-text;
+    font-size: 14px;
+  }
+
+  &-error {
+    margin: 0 0 $space-4;
+    color: $danger;
+  }
+
+  &-actions {
+    display: flex;
+    gap: $space-3;
+    margin-bottom: $space-2;
+
+    button {
+      padding: $space-1 $space-3;
+      border: 1px solid $surface-subtle-border;
+      border-radius: $radius-sm;
+      background: #fff;
+      color: $body-text;
+    }
+  }
+
+  &-output {
+    width: 100%;
+    min-height: 280px;
+    padding: $space-3;
+    border: 1px solid $surface-subtle-border;
+    border-radius: $radius-sm;
+    font-family: $font-mono;
+    resize: vertical;
+  }
+
+  @media (max-width: $bp-sm) {
+    &-controls {
+      grid-template-columns: 1fr;
+
+      button {
+        grid-column: span 1;
+      }
+    }
+  }
+}

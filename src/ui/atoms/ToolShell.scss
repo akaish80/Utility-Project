@@ -1,0 +1,50 @@
+@use '../../styles/variables' as *;
+
+.tool-shell {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+  margin: $space-8;
+  padding: $space-9;
+  border: 1px solid var(--border);
+  border-radius: $radius-2xl;
+  background: $surface-soft;
+  box-shadow: var(--shadow);
+  text-align: left;
+
+  &__header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-6;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__subtitle {
+    margin: $space-2 0 0;
+    max-width: 640px;
+    color: var(--text);
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-3;
+    align-items: center;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: $space-6;
+  }
+
+  @media (max-width: $bp-sm) {
+    margin: $space-6;
+    padding: $space-7;
+  }
+}

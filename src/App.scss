@@ -1,0 +1,36 @@
+@use './styles/variables' as *;
+
+.app-shell {
+  min-height: 100vh;
+  padding: $space-8;
+  background:
+    radial-gradient(circle at top left, $app-shell-bg-1, transparent 28%),
+    radial-gradient(circle at top right, $app-shell-bg-2, transparent 24%),
+    linear-gradient(180deg, $app-shell-surface-start 0%, $app-shell-surface-end 100%);
+}
+
+.app-tabs {
+  margin-bottom: $space-7;
+
+  .nav-link {
+    color: $app-nav-link;
+    font-weight: 600;
+
+    &.active {
+      color: $app-nav-link-active;
+    }
+  }
+}
+
+.tab-panel-wrap {
+  margin-top: $space-6;
+}
+
+.app-loading,
+.tab-loading {
+  padding: $space-9;
+  border: 1px dashed var(--border);
+  border-radius: $radius-2xl;
+  color: var(--text);
+  background: $app-loading-bg;
+}

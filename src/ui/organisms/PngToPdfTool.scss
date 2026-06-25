@@ -1,0 +1,100 @@
+@use '../../styles/variables' as *;
+
+.png-pdf-card {
+  margin: $space-8;
+  padding: $space-7;
+  border: 1px solid $surface-soft-border;
+  border-radius: $radius-md;
+  background: linear-gradient(180deg, #fffdf7 0%, #f5f8ff 100%);
+
+  h2 {
+    margin: 0 0 $space-2;
+    font-size: 24px;
+  }
+
+  &-subtitle {
+    margin: 0 0 $space-8;
+    color: $muted-text;
+  }
+
+  &-controls {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: $space-3;
+    margin-bottom: $space-4;
+
+    button,
+    .png-pdf-download {
+      padding: $space-2 $space-4;
+      border: 0;
+      border-radius: $radius-sm;
+      font-weight: 600;
+    }
+
+    button {
+      grid-column: span 2;
+      width: fit-content;
+      background: $success;
+      color: #fff;
+
+      &:disabled {
+        background: $success-muted;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &-upload {
+    display: inline-block;
+    padding: $space-2 $space-4;
+    border-radius: $radius-sm;
+    background: $primary;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  &-input {
+    width: 100%;
+  }
+
+  &-file {
+    grid-column: span 2;
+    color: $strong-text;
+    font-size: 14px;
+  }
+
+  &-reset {
+    background: #6c757d !important;
+  }
+
+  &-error {
+    margin: 0 0 $space-4;
+    color: $danger;
+  }
+
+  &-output-wrap {
+    display: flex;
+    gap: $space-3;
+  }
+
+  &-download {
+    display: inline-block;
+    background: $dark;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  @media (max-width: $bp-sm) {
+    &-controls {
+      grid-template-columns: 1fr;
+
+      button,
+      .png-pdf-file {
+        grid-column: span 1;
+      }
+    }
+  }
+}

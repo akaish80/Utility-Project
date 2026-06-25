@@ -1,0 +1,81 @@
+$color-text: #6b6375;
+$color-heading: #08060d;
+$color-bg: #ffffff;
+$color-border: #e5e4e7;
+$color-code-bg: #f4f3ec;
+$color-accent: #aa3bff;
+$color-accent-bg: rgba(170, 59, 255, 0.1);
+$color-accent-border: rgba(170, 59, 255, 0.5);
+$color-social-bg: rgba(244, 243, 236, 0.5);
+$shadow-soft:
+  rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+$color-text-dark: #9ca3af;
+$color-heading-dark: #f3f4f6;
+$color-bg-dark: #16171d;
+$color-border-dark: #2e303a;
+$color-code-bg-dark: #1f2028;
+$color-accent-dark: #c084fc;
+$color-accent-bg-dark: rgba(192, 132, 252, 0.15);
+$color-accent-border-dark: rgba(192, 132, 252, 0.5);
+$color-social-bg-dark: rgba(47, 48, 58, 0.5);
+$shadow-soft-dark:
+  rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+
+$font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+$font-heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+$font-mono: ui-monospace, Consolas, monospace;
+
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 10px;
+$space-4: 12px;
+$space-5: 14px;
+$space-6: 16px;
+$space-7: 18px;
+$space-8: 20px;
+$space-9: 24px;
+$space-10: 32px;
+
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 14px;
+$radius-xl: 18px;
+$radius-2xl: 20px;
+$radius-pill: 999px;
+
+$bp-sm: 640px;
+$bp-md: 768px;
+$bp-lg: 900px;
+$bp-xl: 1024px;
+
+$app-shell-bg-1: rgba(13, 110, 253, 0.08);
+$app-shell-bg-2: rgba(25, 135, 84, 0.08);
+$app-shell-surface-start: #f6f8fc;
+$app-shell-surface-end: #eef3f9;
+$app-loading-bg: rgba(255, 255, 255, 0.7);
+$app-nav-link: #334155;
+$app-nav-link-active: #0d6efd;
+
+$surface-soft: rgba(255, 255, 255, 0.82);
+$surface-card: #ffffff;
+$surface-panel: rgba(248, 250, 255, 0.9);
+$surface-muted: rgba(255, 255, 255, 0.6);
+$surface-soft-border: #d8dee6;
+$surface-subtle-border: #c9d3e0;
+$surface-body: #f8fafc;
+
+$primary: #0d6efd;
+$primary-strong: #4c8dff;
+$success: #198754;
+$success-muted: #89a896;
+$danger: #b42318;
+$dark: #111827;
+$muted-text: #445167;
+$strong-text: #273244;
+$body-text: #213043;
+$light-border: #ecf0f1;
+$warning-surface: #fff78b;
+$nav-shadow: rgba(233, 12, 12, 0.2);
+$primary-shadow: rgba(13, 110, 253, 0.25);
+$card-shadow: rgba(15, 23, 42, 0.05);

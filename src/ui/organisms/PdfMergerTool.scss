@@ -1,0 +1,191 @@
+@use '../../styles/variables' as *;
+
+.pdf-merger-card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+
+  &-upload,
+  &-controls button,
+  &-secondary,
+  &-actions button {
+    padding: $space-2 $space-4;
+    border: 0;
+    border-radius: $radius-pill;
+    font-weight: 600;
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.15s ease,
+      opacity 0.15s ease;
+  }
+
+  &-upload,
+  &-controls button {
+    background: linear-gradient(135deg, $primary, $primary-strong);
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 12px 24px $primary-shadow;
+  }
+
+  &-upload,
+  &-controls button,
+  &-secondary,
+  &-actions button {
+    &:hover {
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  input[type='file'] {
+    display: none;
+  }
+
+  &-status {
+    color: $primary;
+    font-weight: 600;
+  }
+
+  &-layout {
+    display: grid;
+    grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
+    gap: $space-8;
+  }
+
+  &-list-panel,
+  &-preview-panel {
+    display: flex;
+    flex-direction: column;
+    gap: $space-6;
+    padding: $space-7;
+    border: 1px solid var(--border);
+    border-radius: $radius-xl;
+    background: $surface-panel;
+  }
+
+  &-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-4;
+
+    h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    span {
+      color: var(--text);
+      font-size: 14px;
+    }
+  }
+
+  &-list {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &-item {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: $space-3;
+    align-items: center;
+    padding: $space-3 $space-4;
+    border: 1px solid var(--border);
+    border-radius: $radius-lg;
+    background: $surface-card;
+    box-shadow: 0 8px 20px $card-shadow;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  &-position {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: $radius-pill;
+    background: var(--accent-bg);
+    color: $primary;
+    font-weight: 700;
+  }
+
+  &-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &-actions {
+    display: flex;
+    gap: $space-2;
+
+    button {
+      background: #e9eef7;
+      color: $app-nav-link;
+      cursor: pointer;
+
+      &:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-3;
+
+    button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+  }
+
+  &-preview {
+    width: 100%;
+    min-height: 620px;
+    border: 1px solid var(--border);
+    border-radius: $radius-lg;
+    background: $surface-card;
+  }
+
+  &-empty {
+    display: grid;
+    min-height: 620px;
+    place-items: center;
+    padding: $space-9;
+    border: 1px dashed var(--border);
+    border-radius: $radius-lg;
+    background: $surface-muted;
+    color: var(--text);
+    text-align: center;
+  }
+
+  &-hint {
+    color: var(--text);
+  }
+
+  @media (max-width: $bp-lg) {
+    &-layout {
+      grid-template-columns: 1fr;
+    }
+
+    &-preview,
+    &-empty {
+      min-height: 480px;
+    }
+  }
+}

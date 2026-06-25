@@ -1,0 +1,107 @@
+@use './styles/variables' as *;
+
+:root {
+  --text: #{$color-text};
+  --text-h: #{$color-heading};
+  --bg: #{$color-bg};
+  --border: #{$color-border};
+  --code-bg: #{$color-code-bg};
+  --accent: #{$color-accent};
+  --accent-bg: #{$color-accent-bg};
+  --accent-border: #{$color-accent-border};
+  --social-bg: #{$color-social-bg};
+  --shadow: #{$shadow-soft};
+
+  --sans: #{$font-sans};
+  --heading: #{$font-heading};
+  --mono: #{$font-mono};
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: $bp-xl) {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #{$color-text-dark};
+    --text-h: #{$color-heading-dark};
+    --bg: #{$color-bg-dark};
+    --border: #{$color-border-dark};
+    --code-bg: #{$color-code-bg-dark};
+    --accent: #{$color-accent-dark};
+    --accent-bg: #{$color-accent-bg-dark};
+    --accent-border: #{$color-accent-border-dark};
+    --social-bg: #{$color-social-bg-dark};
+    --shadow: #{$shadow-soft-dark};
+  }
+}
+
+body {
+  margin: 0;
+
+  #root {
+    width: 1126px;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    border-inline: 1px solid var(--border);
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+
+  h1,
+  h2 {
+    font-family: var(--heading);
+    font-weight: 500;
+    color: var(--text-h);
+  }
+
+  h1 {
+    font-size: 56px;
+    letter-spacing: -1.68px;
+    margin: $space-10 0;
+
+    @media (max-width: $bp-xl) {
+      font-size: 36px;
+      margin: $space-8 0;
+    }
+  }
+
+  h2 {
+    font-size: 24px;
+    line-height: 118%;
+    letter-spacing: -0.24px;
+    margin: 0 0 $space-2;
+
+    @media (max-width: $bp-xl) {
+      font-size: 20px;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  code {
+    font-family: var(--mono);
+    display: inline-flex;
+    border-radius: 4px;
+    color: var(--text-h);
+    font-size: 15px;
+    line-height: 135%;
+    padding: $space-1 $space-2;
+    background: var(--code-bg);
+  }
+}
